@@ -1,7 +1,7 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -9,18 +9,18 @@ body {
 }
 
 .main-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
   margin-top: 9.3vh;
   width: 100vw;
-  height: 100vh;
 }
 
 .watch {
-  width: 38.9vw;
   height: auto;
   margin-bottom: 82px;
+  width: 38.9vw;
 }
 
 .time-container {
@@ -29,18 +29,32 @@ body {
 }
 
 .bottom-time-container {
-  width: 120px;
-  height: 2px;
   background-color: black;
+  height: 2px;
   margin-bottom: 103px;
+  width: 120px;
 }
 
 .btn {
-  color: #FFF;
-  border: none;
+  align-items: center;
   border-radius: 25px;
-  width: 77.8vw;
+  border: none;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: bold;
   height: 5.4vh;
+  justify-content: center;
+  outline: none;
+  transition: 300ms ease-in-out;
+  width: 77.8vw;
+}
+
+.btn:active {
+  transform: scale(.98);
 }
 
 .count-btn {
@@ -50,4 +64,28 @@ body {
 
 .stop-count-btn {
   background-color: #B23030;
+}
+
+@media (min-width: 720px) {
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .watch {
+    width: 15.62vw;
+  }
+
+  .btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+  }
+
+  .btn {
+    margin-top: 100px;
+    width: 30.25vw;
+  }
 }
