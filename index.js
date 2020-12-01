@@ -2,6 +2,7 @@ class Timer {
 
   constructor(idDisplayTimerContainer = '') {
     this._timerDisplay = document.getElementById(idDisplayTimerContainer)
+    this._counting = false
     this.init()
   }
 
@@ -9,8 +10,11 @@ class Timer {
     this._counter = 0
   }
 
-  startCounter(startValue = 0) {
+  startCounting(startValue = 0) {
+    if (this._counting) return
     this._counter = startValue
+    this._counting = true
+    clearInterval(this._intervalId)
     this._intervalId = setInterval(() => {
       this.addOneSecond()
       this.updateTimer()
@@ -32,7 +36,7 @@ class Timer {
     clearInterval(this._intervalId)
     document.getElementById(idStartButton)
       .addEventListener('click', () => {
-        this.startCounter()    
+        this.startCounting()    
       })
       return this
   }
@@ -40,10 +44,16 @@ class Timer {
   setStopCountButton(idStopButton = '') {
     document.getElementById(idStopButton)
     .addEventListener('click', () => {
-      clearInterval(this._intervalId)
-      this._timerDisplay.textContent = 0
+      this.stopCounting()
     })
     return this
+  }
+
+  stopCounting() {
+    if (!this._counting) return
+    this._counting = false
+    clearInterval(this._intervalId)
+    this._timerDisplay.textContent = 0
   }
 
 } 
