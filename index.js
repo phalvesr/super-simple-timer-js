@@ -6,6 +6,7 @@ class Timer {
   }
 
   init() {
+    this._sessionId = crypto.randomUUID()
     this._counter = 0
   }
 
@@ -13,11 +14,17 @@ class Timer {
     if (this._counting) return
     this._counter = startValue
     this._counting = true
+
     clearInterval(this._intervalId)
     this._intervalId = setInterval(() => {
       this.addOneSecond()
       this.updateTimer()
     }, 1000)
+
+    gtag('event', 'timer_started', {
+      time: new Date().toISOString(),
+      sessionId: this._sessionId
+    })
 
     return this
   }
@@ -35,7 +42,7 @@ class Timer {
     clearInterval(this._intervalId)
     document.getElementById(idStartButton)
       .addEventListener('click', () => {
-        this.startCounting()    
+        this.startCounting()
       })
       return this
   }
@@ -53,8 +60,12 @@ class Timer {
     this._counting = false
     clearInterval(this._intervalId)
     this._timerDisplay.textContent = 0
+    gtag('event', 'timer_stopped', {
+      time: new Date().toISOString(),
+      sessionId: this._sessionId
+    }) 
   }
-} 
+}
 
 new Timer('time-container')
     .setStartCountButton('count')
