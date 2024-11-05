@@ -23,7 +23,8 @@ class Timer {
 
     gtag('event', 'timer_started', {
       time: new Date().toISOString(),
-      sessionId: this._sessionId
+      sessionId: this._sessionId,
+      event_callback: () => console.log('timer_started sent')
     })
 
     return this
@@ -62,7 +63,8 @@ class Timer {
     this._timerDisplay.textContent = 0
     gtag('event', 'timer_stopped', {
       time: new Date().toISOString(),
-      sessionId: this._sessionId
+      sessionId: this._sessionId,
+      event_callback: () => console.log('timer_stopped sent')
     }) 
   }
 }
