@@ -1,5 +1,4 @@
 class Timer {
-
   constructor(idDisplayTimerContainer = '') {
     this._timerDisplay = document.getElementById(idDisplayTimerContainer)
     this._counting = false
@@ -55,7 +54,6 @@ class Timer {
     clearInterval(this._intervalId)
     this._timerDisplay.textContent = 0
   }
-
 } 
 
 new Timer('time-container')
